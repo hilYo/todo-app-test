@@ -56,6 +56,9 @@
         opacity: 1;
     }
 }
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+}
 
 .todo-item .todo-controls-box {
     

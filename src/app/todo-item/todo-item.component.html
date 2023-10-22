@@ -1,5 +1,5 @@
-<div class="todo-item">
-    <div class="check-box" >
+<div class="todo-item" [class.completed]="todo.completed">
+    <div class="check-box" (click)="onTodoClicked()">
         <span class="material-icons">
             check
         </span>
@@ -9,7 +9,7 @@
         {{ todo.title }}
     </div>
 
-    <div class="todo-controls-box" >
+    <div class="todo-controls-box" (click)="$event.stopPropagation()">
 
         <div class="todo-control-button">
             <span class="material-icons">

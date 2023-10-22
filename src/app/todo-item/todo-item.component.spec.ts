@@ -31,4 +31,13 @@ describe('TodoItemComponent', () => {
     const todoTitle = fixture.debugElement.query(By.css('.todo-text')).nativeElement.textContent;
     expect(todoTitle).toContain(todo.title);
   });
+
+  it('should emit todoClicked event when clicked', () => {
+    const todoClickedSpy = spyOn(component.todoClicked, 'emit');
+
+    const todoButton = fixture.debugElement.query(By.css('.check-box'));
+    todoButton.triggerEventHandler('click', null);
+
+    expect(todoClickedSpy).toHaveBeenCalled();
+  });
 });
