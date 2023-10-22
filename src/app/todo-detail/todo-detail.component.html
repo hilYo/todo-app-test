@@ -1,0 +1,5 @@
+<div class="todo-detail-container" *ngIf="todo">
+    <h2>Todo Title: {{ todo.title }}</h2>
+    <p *ngIf="todo.description">Todo description: {{ todo.description }}</p>
+    <button class="button alt-gradient-button" routerLink="/">Back To Todos List</button>
+</div>

@@ -1,4 +1,4 @@
-<div class="todo-item" [class.completed]="todo.completed">
+<div class="todo-item" [routerLink]="[index]" [class.completed]="todo.completed">
     <div class="check-box" (click)="onTodoClicked()">
         <span class="material-icons">
             check

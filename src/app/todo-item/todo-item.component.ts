@@ -9,7 +9,7 @@ import { Todo } from '../shared/todo.model';
 export class TodoItemComponent implements OnInit {
 
   @Input() todo!: Todo;
-
+  @Input() index!: number;
   @Output() todoClicked: EventEmitter<void> = new EventEmitter();
 
   constructor() { }

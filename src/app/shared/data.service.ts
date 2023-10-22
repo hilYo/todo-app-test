@@ -11,7 +11,7 @@ export class DataService {
 
   todos: Todo[] = [
     new Todo( 'this is a test'),
-    new Todo( 'Coder la US 1 pour le test des Todos', true),
+    new Todo( 'Coder la US 1 pour le test des Todos', true, 'this is a description of todo task in mode mock data!'),
     new Todo( 'Coder la US 2 pour le test des Todos', false)
   ]
 
@@ -20,6 +20,10 @@ export class DataService {
   getAllTodos() {
     return this.todos.slice();
   };
+
+  getTodoById(index: number) {
+    return this.todos[index];
+  }
 
   changeTodoState(index: number) {
     //change todo state
