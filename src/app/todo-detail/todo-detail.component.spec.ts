@@ -29,7 +29,7 @@ describe('TodoDetailComponent', () => {
     dataService = TestBed.inject(DataService);
 
     // Mock the data service's getTodoById method
-    spyOn(dataService, 'getTodoById').and.returnValue(new Todo( 'Test Todo',false , 'This is a test description' ));
+    spyOn(dataService, 'getTodoById').and.returnValue(new Todo( 'Test Todo', 'This is a test description',false ));
 
     fixture.detectChanges();
   });

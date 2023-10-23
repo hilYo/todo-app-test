@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Todo } from '../shared/todo.model';
 import { DataService } from '../shared/data.service';
 import { Subscription } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-todos',
@@ -11,6 +12,8 @@ import { Subscription } from 'rxjs';
 export class TodosComponent implements OnInit, OnDestroy {
 
   todos!: Todo[];
+  showValidationError!: boolean;
+
   sub!: Subscription;
 
   constructor(private dataService: DataService) { }
@@ -21,6 +24,15 @@ export class TodosComponent implements OnInit, OnDestroy {
     });
 
     this.todos = this.dataService.getAllTodos();
+  }
+
+  onFormSubmit(form: NgForm) {
+    if(!form.valid) { return this.showValidationError = true; }
+    console.log(form.value )
+    this.dataService.addTodo(new Todo(form.value.title, form.value.description));
+
+    form.reset();
+    return this.showValidationError =false;
   }
 
   toggleCompleted(index: number) {

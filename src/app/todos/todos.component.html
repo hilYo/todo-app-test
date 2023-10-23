@@ -7,15 +7,15 @@
 <div class="container add-todo-box-container">
     <div class="add-todo-box">
 
-        <form>
+        <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
     
             <h2 class="title is-5">New Todo</h2>
             <div class="field is-grouped" style="margin: 0;">
                 <p class="control is-expanded" style="width: 50px;">
-                  <input minlength="2" name="title" class="input" type="text" placeholder="Type todo text here... ">
+                  <input ngModel #todoTextField="ngModel" required minlength="2" name="title" class="input" type="text" placeholder="Type todo text here... ">
                 </p>
                 <p class="control is-expanded">
-                    <textarea name="description" class="input" type="text" placeholder="Type todo description text here... "></textarea>
+                    <textarea ngModel #todoDescriptionField="ngModel" name="description" class="input" type="text" placeholder="Type todo description text here... "></textarea>
                 </p>
                 <p class="control">
                     <button class="button alt-gradient-button" type="submit">
@@ -27,6 +27,11 @@
                 </p>
             </div>
 
+            <div *ngIf="todoTextField.invalid && showValidationError">
+                <p class="help is-danger" *ngIf="todoTextField.errors?.['required']">Please enter your todo text</p>
+                <p class="help is-danger" *ngIf="todoTextField.errors?.['minlength']">Todo list must be least 2 char</p>
+            </div>
+            
         </form>
     </div>
 

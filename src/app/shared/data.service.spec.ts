@@ -18,9 +18,9 @@ describe('DataService', () => {
   it('should change the state of a todo', () => {
     // creat todos
     const todos: Todo[] = [
-      new Todo('Test Todo 1', true),
-      new Todo('Test Todo 2', false),
-      new Todo('Test Todo 3', true),
+      new Todo('Test Todo 1', '',true),
+      new Todo('Test Todo 2', '',false),
+      new Todo('Test Todo 3', '',true),
     ];
 
     // Initialise the service with todos

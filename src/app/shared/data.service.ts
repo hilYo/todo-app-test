@@ -11,8 +11,8 @@ export class DataService {
 
   todos: Todo[] = [
     new Todo( 'this is a test'),
-    new Todo( 'Coder la US 1 pour le test des Todos', true, 'this is a description of todo task in mode mock data!'),
-    new Todo( 'Coder la US 2 pour le test des Todos', false)
+    new Todo( 'Coder la US 1 pour le test des Todos', 'this is a description of todo task in mode mock data!', true),
+    new Todo( 'Coder la US 2 pour le test des Todos')
   ]
 
   constructor() { }
@@ -27,7 +27,7 @@ export class DataService {
 
   changeTodoState(index: number) {
     //change todo state
-    const newTodo = new Todo(this.todos[index].title, !this.todos[index].completed);
+    const newTodo = new Todo(this.todos[index].title, this.todos[index].description, !this.todos[index].completed);
 
     // When a todo is done, it should be on the top of the list, else it should be placed at the bottom of the list
     if(!newTodo.completed) {
@@ -40,4 +40,8 @@ export class DataService {
     this.todosChanged.next(this.todos.slice());
   }
 
+  addTodo(todo: Todo) {
+    this.todos.unshift(todo);
+    this.todosChanged.next(this.todos.slice());
+  }
 }
