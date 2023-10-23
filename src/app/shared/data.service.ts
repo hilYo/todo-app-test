@@ -44,4 +44,9 @@ export class DataService {
     this.todos.unshift(todo);
     this.todosChanged.next(this.todos.slice());
   }
+
+  deleteTodo(index:number) {
+    this.todos.splice(index, 1);
+    this.todosChanged.next(this.todos.slice());
+  }
 }

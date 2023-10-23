@@ -15,6 +15,17 @@ describe('DataService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('should get all todos', () => {
+    const todos = service.getAllTodos();
+    expect(todos).toEqual(service.todos);
+  });
+
+  it('should get a todo by ID', () => {
+    const index = 0;
+    const todo = service.getTodoById(index);
+    expect(todo).toEqual(service.todos[index]);
+  });
+
   it('should change the state of a todo', () => {
     // creat todos
     const todos: Todo[] = [
@@ -40,5 +51,21 @@ describe('DataService', () => {
     for (let i = 1; i < todos.length; i++) {
       expect(service.todos[i]).toEqual(todos[i]);
     }
+  });
+
+  it('should add a new todo', () => {
+    const newTodo = new Todo('New Task', 'Description', false);
+    service.addTodo(newTodo);
+
+    // Verify that the new todo is added to the beginning of the list
+    expect(service.todos[0]).toEqual(newTodo);
+  });
+
+  it('should delete a todo', () => {
+    const todoDeleted = service.todos[0] // Assuming you want to delete the first todo
+    service.deleteTodo(0);
+
+    // Verify that the todo is removed from the list
+    expect(service.todos).not.toContain(todoDeleted);
   });
 });

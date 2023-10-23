@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Todo } from '../shared/todo.model';
+import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-todo-item',
@@ -12,13 +13,17 @@ export class TodoItemComponent implements OnInit {
   @Input() index!: number;
   @Output() todoClicked: EventEmitter<void> = new EventEmitter();
 
-  constructor() { }
+  constructor( private dataService: DataService) { }
 
   ngOnInit(): void {
   }
 
   onTodoClicked() {
     this.todoClicked.emit();
+  }
+
+  ondeleteClecked() {
+    this.dataService.deleteTodo(this.index);
   }
 
 }
