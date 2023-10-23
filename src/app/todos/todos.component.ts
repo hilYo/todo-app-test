@@ -3,6 +3,8 @@ import { Todo } from '../shared/todo.model';
 import { DataService } from '../shared/data.service';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { TodoEditComponent } from '../todo-edit/todo-edit.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-todos',
@@ -16,7 +18,8 @@ export class TodosComponent implements OnInit, OnDestroy {
 
   sub!: Subscription;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.sub = this.dataService.todosChanged.subscribe((todos: Todo[]) => {
@@ -39,6 +42,23 @@ export class TodosComponent implements OnInit, OnDestroy {
     // set todo to completed by calling a method from dataService
     this.dataService.changeTodoState(index);
     
+  }
+
+  editTodo(todo: Todo) {
+
+    const index = this.todos.indexOf(todo);
+
+    let dialogRef = this.dialog.open(TodoEditComponent, {
+      height: '250px',
+      width: '600px',
+      data: todo,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if(result) {
+        this.dataService.updateTodo(index, result);
+      }
+    })
   }
 
   ngOnDestroy() {

@@ -45,6 +45,11 @@ export class DataService {
     this.todosChanged.next(this.todos.slice());
   }
 
+  updateTodo(index: number, updatedTodo: Todo) {
+    this.todos[index] = updatedTodo;
+    this.todosChanged.next(this.todos.slice());
+  }
+
   deleteTodo(index:number) {
     this.todos.splice(index, 1);
     this.todosChanged.next(this.todos.slice());

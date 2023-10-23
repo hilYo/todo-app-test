@@ -11,13 +11,13 @@
 
     <div class="todo-controls-box" (click)="$event.stopPropagation()">
 
-        <div class="todo-control-button">
+        <div class="todo-control-button" (click)="onEditClicked()">
             <span class="material-icons">
                 edit
             </span>
         </div>
-        <div class="todo-control-button is-danger">
-            <span class="material-icons" (click)="ondeleteClecked()">
+        <div class="todo-control-button is-danger" (click)="ondeleteClecked()">
+            <span class="material-icons" >
                 delete
             </span>
         </div>

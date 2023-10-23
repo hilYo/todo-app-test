@@ -1,4 +1,5 @@
 export class Todo {
+text: any;
 
     constructor (
         public title: string,
